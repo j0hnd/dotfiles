@@ -88,6 +88,10 @@ Some features:
 
     vim +PluginInstall +qall
 
+#### Docker files
+
+    docker pull j0hnd/apache-php
+
 ## Raw links
 
 https://raw.githubusercontent.com/rcclemente/dotfiles/master/tmux.conf

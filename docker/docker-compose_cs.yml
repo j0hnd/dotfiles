@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  mariadb:
+    container_name: mariadb-server
+    image: mariadb
+    ports:
+      - "4306:3306"
+    restart: always
+    command: mysqld --innodb-buffer-pool-size=20M
+    volumes:
+      - /Users/john/Data:/var/lib/mysql
+    environment:
+      MYSQL_USER: bot
+      MYSQL_PASSWORD: d0ck3r
+      MYSQL_ROOT_PASSWORD: root
+    # networks:
+    #   - devel
+
+  mystaff:
+    container_name: mystaff
+    image: j0hnd/apache-php
+    ports:
+      - "8000:80"
+    volumes:
+      - ./mystaff-codebase-2:/var/www
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: 1m
+    # depends_on:
+    #   - mariadb
+    # networks:
+    #   - devel
+    links:
+      - mariadb
+  
+# networks:
+#   devel:
+#     driver: bridge
+  
